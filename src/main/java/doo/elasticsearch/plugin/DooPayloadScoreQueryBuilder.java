@@ -15,7 +15,7 @@ import org.elasticsearch.index.query.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class PayloadScoreQueryBuilder extends AbstractQueryBuilder<PayloadScoreQueryBuilder> {
+public class DooPayloadScoreQueryBuilder extends AbstractQueryBuilder<DooPayloadScoreQueryBuilder> {
 
     public static final String NAME = "payload_score";
 
@@ -29,14 +29,14 @@ public class PayloadScoreQueryBuilder extends AbstractQueryBuilder<PayloadScoreQ
     private final String calc;
     private final boolean includeSpanScore;
 
-    public PayloadScoreQueryBuilder(QueryBuilder query, String func, String calc, boolean includeSpanScore) {
+    public DooPayloadScoreQueryBuilder(QueryBuilder query, String func, String calc, boolean includeSpanScore) {
         this.query = requireValue(query, "[" + NAME + "] requires '" + QUERY_FIELD.getPreferredName() + "' field");
         this.func = func;
         this.calc = calc;
         this.includeSpanScore = includeSpanScore;
     }
 
-    public PayloadScoreQueryBuilder(StreamInput in) throws IOException {
+    public DooPayloadScoreQueryBuilder(StreamInput in) throws IOException {
         super(in);
         this.query = in.readNamedWriteable(QueryBuilder.class);
         this.func = in.readString();
@@ -96,7 +96,7 @@ public class PayloadScoreQueryBuilder extends AbstractQueryBuilder<PayloadScoreQ
                 }
             }
         }
-        return new PayloadScoreQueryBuilder(iqb, func, calc, includeSpanScore);
+        return new DooPayloadScoreQueryBuilder(iqb, func, calc, includeSpanScore);
     }
 
     @Override
@@ -113,17 +113,17 @@ public class PayloadScoreQueryBuilder extends AbstractQueryBuilder<PayloadScoreQ
             throw new IllegalArgumentException("SpanQuery is null");
         }
 
-        PayloadFunction payloadFunction = PayloadUtils.getPayloadFunction(this.func);
+        PayloadFunction payloadFunction = DooPayloadUtils.getPayloadFunction(this.func);
         if (payloadFunction == null) {
             throw new IllegalArgumentException("Unknown payload function: " + func);
         }
-        PayloadDecoder payloadDecoder = PayloadUtils.getPayloadDecoder("float");
+        PayloadDecoder payloadDecoder = DooPayloadUtils.getPayloadDecoder("float");
 
         return new PayloadScoreQuery(spanQuery, payloadFunction, payloadDecoder, this.includeSpanScore);
     }
 
     @Override
-    protected boolean doEquals(PayloadScoreQueryBuilder that) {
+    protected boolean doEquals(DooPayloadScoreQueryBuilder that) {
         return Objects.equals(query, that.query)
             && Objects.equals(func, that.func)
             && Objects.equals(calc, that.calc)

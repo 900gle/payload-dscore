@@ -4,7 +4,7 @@ import org.apache.lucene.analysis.payloads.PayloadHelper;
 import org.apache.lucene.queries.payloads.*;
 import org.apache.lucene.util.BytesRef;
 
-public class PayloadUtils {
+public class DooPayloadUtils {
 
     public static PayloadDecoder getPayloadDecoder(String encoder) {
         PayloadDecoder decoder = null;
