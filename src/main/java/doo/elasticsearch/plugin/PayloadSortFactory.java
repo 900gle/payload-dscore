@@ -14,6 +14,7 @@ import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class PayloadSortFactory implements NumberSortScript.LeafFactory {
 
     private final Map<String, Object> params;
@@ -42,6 +43,14 @@ public class PayloadSortFactory implements NumberSortScript.LeafFactory {
 
     @Override
     public NumberSortScript newInstance(DocReader docReader) throws IOException {
+
+
+
+
+
+
+
+
         return null;
     }
 

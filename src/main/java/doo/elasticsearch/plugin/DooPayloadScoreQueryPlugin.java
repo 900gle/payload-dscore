@@ -19,6 +19,9 @@ public class DooPayloadScoreQueryPlugin extends Plugin implements SearchPlugin {
 
 
 
+
+
+
     public ScriptEngine getScriptEngine(Settings settings, Collection<ScriptContext<?>> contexts) {
         return new SortScriptEngine();
     }
